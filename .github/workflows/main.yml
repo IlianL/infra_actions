@@ -64,8 +64,8 @@ jobs:
         with:
           host: ${{ secrets.HOST_VM }}
           username: ${{ secrets.USER_VM }}
-          key: ${{ secrets.SSH_KEY }}
-          passphrase: ${{ secrets.PASSPHRASE_VM_SSH }} # Если ваш ssh-ключ защищён фразой-паролем
+          key: ${{ secrets.SSH_KEY }} # for commit
+          passphrase: ${{ secrets.PASSPHRASE }} # Если ваш ssh-ключ защищён фразой-паролем
           script: |
             # Выполняет pull образа с DockerHub
             sudo docker pull ilian93/infra_actions
