@@ -63,12 +63,12 @@ jobs:
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
-        username: ${{ secrets.USER }} # as
+        username: ${{ secrets.USER }} # a
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.PASSPHRASE }} # Если ваш ssh-ключ защищён фразой-паролем
         script: |
           # Выполняет pull образа с DockerHub
-          sudo docker pull ilian93/infra_actions
+          sudo docker pull ${{ secrets.DOCKER_LOGIN }}/infra_actions
           #остановка всех контейнеров
           sudo docker stop $(sudo docker ps -a -q)
-          sudo docker run --rm -d -p 5000:5000 ilian93/infra_actions
+          sudo docker run --rm -d -p 5000:5000 ${{ secrets.DOCKER_LOGIN }}/infra_actions
